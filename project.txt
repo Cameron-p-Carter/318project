@@ -1,0 +1,229 @@
+University of Wollongong
+School of Computing and Information Technology
+CSCI318 Software Engineering Practices & Principles
+Spring 2025 
+Group Project (45 marks)
+• You need to form a group of 4 people and register your group using a form on the Moodle 
+site of the subject.
+• Structure your group, allocate roles and responsibilities to your members and organize
+weekly meetings. Each group must have at least one meeting per week.
+• Make sure your group make progress on the project every week
+SUBMISSION 
+1. Project Plan (2 marks): Week 4 Lab. 
+a. One member from each group presents the progress of their group in 5 minutes
+b. The progress report presentation should contain:
+i. Introduce their group members and roles
+ii. Preliminary findings of all the tasks such as details about the projects, 
+software applications and testing tools your group selects to study. 
+iii. Work plans in the form of a Work Breakdown Structure (e.g. tasks, subtasks, who perform what, outcomes, etc.) 
+iv. Meeting plans, e.g. how many meetings per week, date/time and location of 
+meetings.
+2. Progress Report (3 marks): submit to Moodle in Week 8 (submission deadline will be set 
+on Moodle)
+a. A short video (10 minutes maximum) presents the progress of your group
+b. The progress report presentation (using slides) should contain:
+i. Reporting work completed and work in progress.
+ii. Presenting plans for the remaining of the project.
+iii. Member contribution ratings so far.
+3. Weekly meeting minutes (3 marks): submitted to Moodle every week from Week 3 – Week 
+11 inclusively) should cover at least the following: 
+• True group meeting records: agendas and meeting minutes which include at least 
+the following: meeting date, attendance, progress reports, discussion summaries, 
+and action plans/items. In particular, report what has been done in the previous 
+week, and what has been planned in the next week. 
+4. Final deliverables (27 marks): submitted to Moodle by 9:00am Monday Week 12 
+(tentative)
+Final report (PDF format), source code, README file and other artefacts (if any) your group 
+produce for the project must be submitted to the Moodle site of the subject by one member of 
+your group
+5. Final presentation (5 marks): delivered in Week 12 Lab or Lecture
+The presentation guidelines (including a presentation schedule) will be provided in a separate document 
+before the presentation week. 
+6. Individual component (5 marks): submitted to Moodle by 5:00pm Friday Week 12 
+This component is completed by each individual member and submitted and assessed separately. This 
+component focuses on software quality of the application developed in this project. A specification will 
+be provided in/after week 8.
+IMPORTANT NOTES:
+• PLEASE READ THIS CAREFULLY: All work should be completed independently by your 
+group. Plagiarism may result in a FAIL grade and are subject to the University Academic 
+Misconduct Procedures. If any part (including sentences, figures/diagrams, tables, definitions, 
+descriptions, and so on) in your work are copied from other people's work (including both 
+published and unpublished papers, reports, Web articles, etc.), or if any idea is from other people, 
+such work or people must be acknowledged explicitly. If you directly “copy and paste” sentences 
+from the work of other people (including GenAI) to your work, then you should use quotation 
+marks to quote the copied sentences and make a citation next to the quoted text.
+• Member contribution for the whole project (with each member’s signature)
+o On the cover page of your group’s report, you need to provide rating for the 
+contribution of each team member and a detailed explanation of what the team 
+member did for the project to justify the rating.
+o Everyone in the team should write a statement “I agree with my group member 
+contribution report and ratings” and insert their signature next to the statement. 
+o The individual contribution of each team member is assessed by all the other members.
+o The rating scale can be a specific percentage number (e.g. 40%, 60%, 80%, etc.).
+o Alternatively, it can be rated into one of the three scales: “contributed”, “very little”, 
+and “almost no contribution”. For a team member who has “contributed”, he/she will 
+receive 100% of the group mark; for a team member who contributed “very little”, 
+he/she will receive 50% of the team mark; for students who made “almost no 
+contribution”, he/she will receive 0 marks for the entire group project. Your 
+tutor/lecturer may make adjustment to this marking criterion based on practical 
+situations.
+PROJECT SPECIFCATION: AI-Powered Microservice Application
+Project Goal 
+The objective of this project is to design and implement an AI-powered microservice application within 
+a realistic business domain. This application must demonstrate the practical application of software
+engineering principles and patterns discussed in the CSCI318 lectures, including Domain-Driven 
+Design (DDD), event-driven architecture, stream processing, and agentic patterns.
+Business Domain
+Your project team will determine the specific business domain (e.g., travel booking, event registration, 
+online retailing, healthcare, logistics). When selecting your domain, consider its suitability for
+demonstrating the required architectural patterns and ensuring a manageable scope for the project 
+timeline. The application must include at least four distinct bounded contexts, each implemented as a 
+separate microservice. These microservices should communicate via REST requests and/or
+asynchronous messaging. 
+Key Architectural Requirements
+• Microservices: At least four bounded contexts, each implemented as a microservice. 
+• Event-Driven Architecture: Adopts an event-driven architecture for inter-service communication. 
+• Stream Processing: Supports real-time data queries using stream processing techniques. 
+• Agentic AI Components: Integrates LLM-based agentic components for specific use cases.
+Implementation Framework
+• This prototype is to be implemented using the Spring Boot framework with the following 
+mandatory dependencies: Spring Web, Spring Data JPA, H2 (for local development/testing; teams 
+may propose alternatives if justified), Spring Cloud Stream and LangChain4j 
+• Java Version: JDK 21
+• Messaging Platform: Apache Kafka will be used as the messaging platform for event-driven 
+communication. 
+• LLM Model Selection: The selection of a specific LLM model is at the discretion of the project 
+team. Consider options based on accessibility and feasibility.
+• Additional Dependencies: Any additional dependencies beyond those listed above may be used, 
+but explicit permission must be sought from the subject coordinator. This ensures alignment with 
+learning objectives and helps manage project complexity. 
+Detailed Requirements and Project Report Structure
+The final project deliverable includes a professional report and a functional software prototype. 
+Project Report Structure: 
+Cover page 
+− The application name (determined by your project group). 
+− The project group’s ID and name (if any), and all group members.
+− Accountability information (member contribution). See above.
+Abstract
+− This is an executive summary of the application, in one or two paragraphs. 
+− A link to the GitHub repository of this project is included.
+Table of Contents
+Section 1. Introduction
+− Provides introductory information and a concise overview of the application. 
+− Address the business case for this application: What problem does it solve? What are its primary 
+objectives (e.g., business needs, stakeholders’ expectations)?
+− Describe the system's core capabilities.
+− Explain how these system capabilities meet the stated objectives, specifically highlighting how 
+AI empowers the business and adds value.
+Section 2. Analysis, Requirements and Domain Modeling
+1. Functional Requirements. 
+• Identify and clearly state at least ten functional requirements.
+• For each requirement, explain its relevance to the objectives (e.g., business need, 
+stakeholders’ expectation) stated in Section 1.
+• Specify these requirements using use cases and illustrate them with UML activity diagrams.
+2. Real-time Analysis Use Cases
+• At least two of the identified use cases must involve real-time analysis based on streaming 
+data processing.
+3. Agentic AI Use Cases:
+• At least two of the identified use cases must involve the use of an agentic AI component.
+4. Domain Modeling.
+• Identify the domain classes for your chosen business domain, and structure those domain 
+classes into sub-domains.
+• Develop a comprehensive UML domain model diagram.
+• Justify how these domain classes and sub-domains accurately reflect the problem domain 
+(i.e., business domain) and align with the concept of bounded contexts, based on your 
+reasonable assumptions.
+Section 3. Design, Architecture and Implementation
+This section should provide a detailed explanation of your application's design and implementation.
+1. Microservice Architecture: 
+• Present an architectural diagram for your microservice application.
+• This diagram should clearly depict all services, their inter-service communication 
+mechanisms (e.g., via REST requests, asynchronous messaging), and data flows. The 
+diagram must be indicative and facilitate a clear understanding of your system's overall 
+structure.
+2. Layered Architecture:
+• Illustrate the layered architecture adopted for each microservice. Each service is expected to 
+include a presentation layer, a service layer, a domain layer, and an infrastructure layer.
+• Explain the purpose and responsibilities of each layer.
+• Demonstrate the alignment of these architectural layers with the namespace (i.e., package) 
+structure in your software project’s codebase of each service.
+3. Domain-Driven Design Patterns:
+• Discuss the design patterns applied to your domain classes, specifically focusing on entities, 
+value objects, aggregates, domain events, and domain services.
+• Utilise the Domain-Driven Design (DDD) principles from the CSCI318 lectures to explain 
+why a particular domain class belongs to a specific pattern.
+• Include relevant sample code snippets to support and clarify your explanations.
+4. Data Persistence in Microservices:
+• Illustrate your database design.
+• Clearly define the data ownership for each microservice (e.g., using a table to illustrate which 
+microservice owns which data entities).
+5. Event-Driven Architecture and Stream Processing:
+• Explain the design and implementation of your event-driven architecture.
+• Detail what stream processing queries are considered (e.g., using SQL-like language) and 
+how they are implemented to achieve real-time analysis.
+• Present sample code to illustrate your event publishing/consuming and stream processing 
+logic.
+6. Agentic AI Component:
+• Provide a detailed description of the agentic design patterns used.
+• Explain how the LLM models are integrated into your application and how their APIs are 
+utilised.
+• Present sample code to demonstrate the implementation of your agentic AI components.
+7. Other Important Aspects:
+• Include any other significant aspects of your design, architecture, or implementation that 
+contribute to the project's success or demonstrate advanced understanding.
+Section 4. Instruction and Use Case Examples
+1. Configuration and Running Instructions:
+• Provide clear, step-by-step instructions on how to configure and run the entire software 
+project, including Spring Boot applications, Apache Kafka, and any LLM API 
+configurations.
+2. Use Case Input and Output:
+• For each implemented use case, present at least one sample input and its corresponding 
+output.
+• As a full-fledged frontend is not a required component of this group project, external users 
+will primarily communicate with the microservices by calling their REST API endpoints.
+• Consider implementing a lightweight client (e.g., a simple command-line script or a Postman 
+collection) to automate some REST requests or pre-populate the database, especially for 
+demonstrating stream processing scenarios.
+References
+− A correct reference format (e.g., in the Harvard style) must be used.
+README.md File:
+A README.md file must be included in the root directory of your software project. This file should 
+contain:
+• Configuration and running instructions (as detailed in Section 4.1).
+• Sample inputs to demonstrate the use cases (outputs are not necessary in the README)
+Important Note: Keep the GitHub repository private until submitting the project deliverables. Don't 
+share the repository or code with other groups.
+-----END OF SPECIFICATION-----
+
+## Template Project Summaries
+
+### 1. Customer Support Agent (customer-support-agent-main)
+**Purpose**: Demonstrates LangChain4j integration with Spring Boot for AI-powered customer support
+**Key Features**:
+- LangChain4j-based AI agent using Google Gemini API
+- Session-based conversation memory
+- Tool integration for business operations (booking management)
+- REST API endpoints for agent interaction
+**Architecture**:
+- CustomerSupportAgent service class
+- AgentConfiguration for LLM setup
+- Tools class for business logic integration
+- Environment-based API key configuration
+**Relevance**: Shows how to implement agentic AI components with LangChain4j, session management, and tool integration patterns required for our project
+
+### 2. Rest Services with Spring (rest-services-with-spring-v4-master) 
+**Purpose**: Demonstrates microservices architecture with Spring Boot, focusing on Book and Library services
+**Key Features**:
+- Two microservices: Book Service and Library Service
+- RestTemplate for inter-service communication
+- Application service layer pattern
+- DTO (Data Transfer Object) pattern
+- Domain events using AbstractAggregateRoot and ApplicationEventPublisher
+- Event sourcing with persistent event store
+- H2 database integration
+**Architecture**:
+- Layered architecture: REST API → Application Service → Repository
+- Domain event patterns for state changes
+- Event store table for audit trail
+- Service-to-service communication via REST
+**Relevance**: Provides foundation for microservices architecture, layered design, domain events, and inter-service communication patterns needed for our healthcare application
