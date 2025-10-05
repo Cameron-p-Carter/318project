@@ -1,6 +1,10 @@
 # Template projects - exclude from repository
 customer-support-agent-main/
 rest-services-with-spring-v4-master/
+book-recommendaton-agent-main/
+cargo-tracker-0.1-main/
+cargo-tracker-0.1-stream-processing/
+
 
 # Spring Boot / Java
 HELP.md
