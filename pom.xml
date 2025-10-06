@@ -28,6 +28,7 @@
         <module>medication-service</module>
         <module>medical-records-service</module>
         <module>financial-service</module>
+        <module>analytics-service</module>
     </modules>
     
     <dependencyManagement>
