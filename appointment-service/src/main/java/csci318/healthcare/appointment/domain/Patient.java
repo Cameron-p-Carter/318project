@@ -1,10 +1,12 @@
 package csci318.healthcare.appointment.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.data.domain.AbstractAggregateRoot;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "patients")
@@ -29,7 +31,8 @@ public class Patient extends AbstractAggregateRoot<Patient> {
     
     @Column(name = "medical_record_number", unique = true)
     private String medicalRecordNumber;
-    
+
+    @JsonIgnore
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Appointment> appointments = new ArrayList<>();
     
@@ -47,7 +50,7 @@ public class Patient extends AbstractAggregateRoot<Patient> {
     }
     
     private String generateMedicalRecordNumber() {
-        return "MRN-" + System.currentTimeMillis();
+        return "MRN-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
     }
     
     public Long getId() { return id; }

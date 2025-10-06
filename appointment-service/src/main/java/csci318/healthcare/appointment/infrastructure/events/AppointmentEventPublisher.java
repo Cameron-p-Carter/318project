@@ -33,12 +33,13 @@ public class AppointmentEventPublisher {
     @EventListener
     public void handleAppointmentScheduled(AppointmentScheduledEvent event) {
         String message = String.format(
-            "{\"eventType\":\"AppointmentScheduled\",\"appointmentId\":%d,\"patientId\":%d,\"patientName\":\"%s\",\"doctorName\":\"%s\",\"appointmentDateTime\":\"%s\",\"timestamp\":\"%s\"}",
+            "{\"eventType\":\"AppointmentScheduled\",\"appointmentId\":%d,\"patientId\":%d,\"patientName\":\"%s\",\"doctorName\":\"%s\",\"appointmentDateTime\":\"%s\",\"appointmentType\":\"%s\",\"timestamp\":\"%s\"}",
             event.getAppointmentId(),
             event.getPatientId(),
             event.getPatientName(),
             event.getDoctorName(),
             event.getAppointmentDateTime(),
+            event.getAppointmentType(),
             event.getOccurredAt()
         );
         kafkaTemplate.send(APPOINTMENT_TOPIC, message);

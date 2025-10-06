@@ -74,6 +74,31 @@ set GEMINI_API_KEY=your_api_key_here     # Windows
 ```
 
 ### Step 2: Start Kafka
+
+**If using Kafka 4.x+ (KRaft mode - SIMPLER, no Zookeeper!):**
+
+**One-time setup (first time only):**
+```bash
+# Windows - Generate cluster ID
+C:\kafka_2.13-4.1.0\bin\windows\kafka-storage.bat random-uuid
+
+# Copy the UUID it outputs (e.g., q-3puqrWQce6gv-9sSmnIg), then format storage
+# Replace <uuid> with your actual UUID
+C:\kafka_2.13-4.1.0\bin\windows\kafka-storage.bat format -t <uuid> -c C:\kafka_2.13-4.1.0\config\server.properties --standalone
+```
+
+**Start Kafka (just one terminal!):**
+```bash
+# Windows
+C:\kafka_2.13-4.1.0\bin\windows\kafka-server-start.bat C:\kafka_2.13-4.1.0\config\server.properties
+
+# Mac/Linux
+./bin/kafka-server-start.sh ./config/server.properties
+```
+
+**Wait for:** "Kafka Server started" message, then leave this terminal running.
+
+**If using Kafka 3.x (older, with Zookeeper - 2 terminals needed):**
 ```bash
 # Terminal 1: Zookeeper
 C:\kafka\bin\windows\zookeeper-server-start.bat C:\kafka\config\zookeeper.properties
@@ -113,6 +138,85 @@ mvn spring-boot:run
 
 ---
 
+## 🔄 HOW TO RESET FOR FRESH DEMO
+
+### Understanding What Persists
+
+**Will Reset (Fresh Start) ✅:**
+- **All databases** - H2 in-memory with `ddl-auto=create-drop`
+  - Destroyed when service stops
+  - Fresh data from `DataInitializer` on restart
+  - Perfect for clean demonstrations
+
+**Will Persist (Stays Around) ⚠️:**
+- **Kafka topics and events** - Stored on disk
+  - All events remain in topics after restart
+  - Analytics will re-process old events
+  - Can cause duplicate/confusing results
+
+### Option 1: Quick Reset (Services Only)
+
+**When to use:** Practice runs, quick testing between demos
+
+```bash
+# 1. Stop all 5 services (Ctrl+C in each terminal)
+# 2. Restart them - databases fresh, Kafka topics keep old events
+cd appointment-service
+mvn spring-boot:run
+# (repeat for other services)
+```
+
+✅ Fast
+⚠️ Old Kafka events still exist
+
+### Option 2: Complete Reset (Recommended for Graded Demo)
+
+**When to use:** Final demonstration, presentation, graded assessment
+
+**Windows:**
+```bash
+# 1. Stop all 5 services (Ctrl+C)
+
+# 2. Stop Kafka (Ctrl+C)
+
+# 3. Delete Kafka data
+cd C:\kafka_2.13-4.1.0
+rmdir /s /q C:\Users\cz\AppData\Local\Temp\kafka-streams
+rmdir /s /q logs
+
+# 4. Re-format Kafka storage (use your original UUID)
+.\bin\windows\kafka-storage.bat format -t <your-uuid> -c config\server.properties --standalone
+
+# 5. Restart Kafka
+.\bin\windows\kafka-server-start.bat config\server.properties
+
+# 6. Restart all 5 services (in separate terminals)
+cd C:\Users\cz\318project\appointment-service
+$env:GEMINI_API_KEY="your_api_key_here"
+mvn spring-boot:run
+# (repeat for medication-service with API key, and other services)
+```
+
+**Mac/Linux:**
+```bash
+# 3. Delete Kafka data
+cd ~/kafka
+rm -rf /tmp/kafka-streams
+rm -rf logs
+
+# 4. Re-format Kafka storage
+./bin/kafka-storage.sh format -t <your-uuid> -c config/server.properties --standalone
+
+# 5. Restart Kafka
+./bin/kafka-server-start.sh config/server.properties
+```
+
+✅ Completely fresh - perfect for graded demo
+✅ No old events or data
+✅ Clean analytics results
+
+---
+
 ## 🧪 TEST ALL FEATURES
 
 ### 1. Basic REST APIs
@@ -130,7 +234,7 @@ curl http://localhost:8082/api/prescriptions
 curl http://localhost:8083/api/medical-records
 
 # Get all invoices
-curl http://localhost:8084/api/invoices
+curl http://localhost:8084/api/financial/invoices
 ```
 
 ### 2. Event-Driven Architecture Test
@@ -143,7 +247,7 @@ curl -X PUT http://localhost:8081/api/appointments/1/complete
 # "✓ Auto-created invoice for appointment: 1"
 
 # Verify auto-created invoice
-curl http://localhost:8084/api/invoices
+curl http://localhost:8084/api/financial/invoices
 ```
 
 ### 3. Stream Processing - Use Case 1 (Appointment Analytics)
@@ -166,7 +270,7 @@ curl http://localhost:8085/api/analytics/appointments-per-hour
 ### 4. Stream Processing - Use Case 2 (Insurance Claims)
 ```bash
 # Claim insurance (generates event)
-curl -X PUT http://localhost:8084/api/invoices/1/claim
+curl -X POST http://localhost:8084/api/financial/invoices/1/claim
 
 # Query real-time claims analytics (30-second windows)
 curl http://localhost:8085/api/analytics/insurance-claims

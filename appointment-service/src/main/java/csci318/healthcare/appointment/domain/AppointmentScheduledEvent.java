@@ -8,22 +8,25 @@ public class AppointmentScheduledEvent {
     private final String patientName;
     private final String doctorName;
     private final LocalDateTime appointmentDateTime;
+    private final String appointmentType;
     private final LocalDateTime occurredAt;
-    
+
     public AppointmentScheduledEvent(Long appointmentId, Long patientId, String patientName,
-                                   String doctorName, LocalDateTime appointmentDateTime) {
+                                   String doctorName, LocalDateTime appointmentDateTime, String appointmentType) {
         this.appointmentId = appointmentId;
         this.patientId = patientId;
         this.patientName = patientName;
         this.doctorName = doctorName;
         this.appointmentDateTime = appointmentDateTime;
+        this.appointmentType = appointmentType;
         this.occurredAt = LocalDateTime.now();
     }
-    
+
     public Long getAppointmentId() { return appointmentId; }
     public Long getPatientId() { return patientId; }
     public String getPatientName() { return patientName; }
     public String getDoctorName() { return doctorName; }
     public LocalDateTime getAppointmentDateTime() { return appointmentDateTime; }
+    public String getAppointmentType() { return appointmentType; }
     public LocalDateTime getOccurredAt() { return occurredAt; }
 }

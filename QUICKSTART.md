@@ -22,22 +22,31 @@ export GEMINI_API_KEY=your_actual_api_key_here
 
 ## Step 2: Start Kafka
 
-**Terminal 1 - Start Zookeeper:**
-```bash
-# Windows
-C:\kafka\bin\windows\zookeeper-server-start.bat C:\kafka\config\zookeeper.properties
+**Using Kafka 4.x (KRaft mode - SIMPLER!):**
 
-# Mac/Linux
-./bin/zookeeper-server-start.sh ./config/zookeeper.properties
+**One-time setup (first time only):**
+```bash
+# Generate cluster ID
+C:\kafka_2.13-4.1.0\bin\windows\kafka-storage.bat random-uuid
+
+# Copy the UUID it outputs, then format storage (replace <uuid> with your UUID)
+C:\kafka_2.13-4.1.0\bin\windows\kafka-storage.bat format -t <uuid> -c C:\kafka_2.13-4.1.0\config\server.properties --standalone
 ```
 
-**Terminal 2 - Start Kafka:**
+**Start Kafka (just one terminal!):**
 ```bash
-# Windows
-C:\kafka\bin\windows\kafka-server-start.bat C:\kafka\config\server.properties
+C:\kafka_2.13-4.1.0\bin\windows\kafka-server-start.bat C:\kafka_2.13-4.1.0\config\server.properties
+```
 
-# Mac/Linux
-./bin/kafka-server-start.sh ./config/server.properties
+Wait for "Kafka Server started" - then leave this terminal running!
+
+**Using Kafka 3.x (older version with Zookeeper):**
+```bash
+# Terminal 1 - Start Zookeeper:
+C:\kafka\bin\windows\zookeeper-server-start.bat C:\kafka\config\zookeeper.properties
+
+# Terminal 2 - Start Kafka:
+C:\kafka\bin\windows\kafka-server-start.bat C:\kafka\config\server.properties
 ```
 
 ## Step 3: Build the Project

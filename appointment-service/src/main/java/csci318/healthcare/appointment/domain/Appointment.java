@@ -1,5 +1,6 @@
 package csci318.healthcare.appointment.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.springframework.data.domain.AbstractAggregateRoot;
 import java.time.LocalDateTime;
@@ -11,8 +12,9 @@ public class Appointment extends AbstractAggregateRoot<Appointment> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "patient_id", nullable = false)
+    @JsonIgnoreProperties("appointments")
     private Patient patient;
     
     @Column(nullable = false)
@@ -41,8 +43,8 @@ public class Appointment extends AbstractAggregateRoot<Appointment> {
         this.location = location;
         this.status = AppointmentStatus.SCHEDULED;
         
-        registerEvent(new AppointmentScheduledEvent(this.id, patient.getId(), 
-                     patient.getFullName(), doctorName, appointmentDateTime));
+        registerEvent(new AppointmentScheduledEvent(this.id, patient.getId(),
+                     patient.getFullName(), doctorName, appointmentDateTime, type.toString()));
     }
     
     public void reschedule(LocalDateTime newDateTime) {
